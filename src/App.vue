@@ -2,38 +2,22 @@
   <v-app id="inspire">
     <v-navigation-drawer fixed :clipped="$vuetify.breakpoint.lgAndUp"  app v-model="drawer"  width="200">
       <v-list dense>
-        <template v-for="(item, i) in items">
-            <v-layout  row  v-if="item.heading"   align-center  :key="i" >
-              <v-flex xs6>
-                <v-subheader v-if="item.heading">
-                  {{ item.heading }}
-                </v-subheader>
-              </v-flex>
-              <v-flex xs6 class="text-xs-right">
-                <v-btn small flat>edit</v-btn>
-              </v-flex>
-            </v-layout>
-            <v-divider  dark    v-else-if="item.divider"  class="my-3"  :key="i" ></v-divider>
-            <v-list-tile   :key="i" v-else  @click="go(item.href)"  >
+        <template v-for="(item, i) in navs">
+            <v-divider  dark v-if="item.divider"  class="my-3"  :key="i" ></v-divider>
+            <v-list-tile  v-else :key="i"  @click="go(item.path)"  >
               <v-list-tile-action>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
                 <v-list-tile-title class="grey--text">
-                  {{ item.text }}
+                  {{ item.title }}
                 </v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
 </template>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar
-      color="teal lighten-1"
-      dark
-      app
-      :clipped-left="$vuetify.breakpoint.lgAndUp"
-      fixed
-    >
+    <v-toolbar flat height="40px" color="grey darken-4" fixed dark app :clipped-left="$vuetify.breakpoint.lgAndUp">
       <v-toolbar-title  class="ml-0 pl-3">
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <span class="hidden-sm-and-down" @click="go('/')">区块链导航&nbsp<small class="text">磨链区块链技术社区</small></span>
@@ -48,11 +32,8 @@
          <router-view></router-view>
       </v-container>
     </v-content>
-    <v-footer app inset height="auto">
-    <v-card
-      flat
-      tile
-      class="transparent grey--text text-xs-center"
+    <v-footer inset height="auto" app >
+    <v-card flat tile class="transparent grey--text text-xs-center"
     >
       <v-card-text>
         <template v-for="item in links">
@@ -67,7 +48,7 @@
             </v-btn>
         </template>
       </v-card-text>
-      <v-card-text class="pt-0 text-xs-left">
+      <v-card-text class="pt-0" >
         磨链不是一个公司，也不是一个专门的机构，我们只是一群人因为兴趣爱好聚在一块，共同琢磨一些区块链技术相关的内容。旨在普及区块链技术。有基础和兴趣的大家深入做一些项目实践，但是前提是不商用，一起以实践学习为目的。
       </v-card-text>
       <v-card-text>
@@ -94,6 +75,8 @@
 </template>
 
 <script>
+import navs from '@/assets/res.json'
+
 export default {
   name: 'App',
   data: () => ({
@@ -106,6 +89,7 @@ export default {
       {icon: 'fab fa-wordpress-simple', href: 'http://mochain.info'},
       {icon: 'fab fa-github', href: 'https://github.com/mochain'}
     ],
+    navs: navs,
     items: [
       { icon: 'fa-graduation-cap', text: '区块链教程', href: '' },
       { icon: 'fa-user-secret', text: '培训机构', href: '' },
@@ -141,10 +125,11 @@ export default {
   }),
   methods: {
     go: function (path) {
+      if (path === '') {
+        return
+      }
       if (path.startsWith('/')) {
-        this.$router.push({
-          path: path
-        })
+        this.$router.push({path: path})
       } else {
         window.open(path)
       }
@@ -154,22 +139,7 @@ export default {
 </script>
 
 <style>
-#keep main .container {
-  height: 660px;
-}
-.navigation-drawer__border {
-  display: none;
-}
-.text {
-  font-weight: 400;
-}
-#create .speed-dial {
-  position: absolute;
-}
-#create .btn--floating {
-  position: relative;
-}
-.fa-zhihu:before {
-    content: "\E00C";
+.footer--fixed {
+    position: absolute;
 }
 </style>
