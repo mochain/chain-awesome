@@ -29,7 +29,8 @@
     </v-toolbar>
     <v-content>
       <v-container fluid fill-height>
-         <router-view></router-view>
+         <!-- <router-view></router-view> -->
+         <home/>
       </v-container>
     </v-content>
     <v-footer inset height="auto" app >
@@ -76,6 +77,7 @@
 
 <script>
 import navs from '@/assets/res.json'
+import home from '@/views/home'
 
 export default {
   name: 'App',
@@ -141,6 +143,9 @@ export default {
         // }
       }
     }
+  },
+  components: {
+    home
   }
 }
 </script>
