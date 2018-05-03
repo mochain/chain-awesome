@@ -4,7 +4,7 @@
       <v-list dense>
         <template v-for="(item, i) in navs">
             <v-divider  dark v-if="item.divider"  class="my-3"  :key="i" ></v-divider>
-            <v-list-tile  v-else :key="i"  @click="go(item.path)"  >
+            <v-list-tile  v-else :key="i"  @click="go(item,i)"  >
               <v-list-tile-action>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-tile-action>
@@ -124,14 +124,21 @@ export default {
     ]
   }),
   methods: {
-    go: function (path) {
-      if (path === '') {
-        return
-      }
-      if (path.startsWith('/')) {
-        this.$router.push({path: path})
+    go: function (item, index) {
+      if (item.url === undefined || item.url === '') {
+        // 说明是内部链接，将自动调整到对应的标签
+        var id = '#nav_' + index
+        // 如果根据ID选择器查找，无数据，则放弃
+        if (document.querySelector(id) === null) {
+          return
+        }
+        this.$vuetify.goTo(id, {offset: -20})
       } else {
-        window.open(path)
+        // if (item.url.startsWith('/')) {
+        //   this.$router.push({path: path})
+        // } else {
+        window.open(item.url)
+        // }
       }
     }
   }
