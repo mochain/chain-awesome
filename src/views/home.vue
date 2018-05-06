@@ -10,14 +10,21 @@
 </template>
 
 <script>
-import navs from '@/assets/res.json'
+// import navs from '@/assets/res.json'
 import card from '@/components/card'
 export default {
-  data: () => ({
-    navs: navs
-  }),
+  // data: () => ({
+  // }),
+  computed: {
+    navs () {
+      return this.$store.state.setting.navs
+    }
+  },
   components: {
     card
+  },
+  methods: {
+
   }
 }
 </script>

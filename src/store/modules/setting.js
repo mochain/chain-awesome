@@ -1,19 +1,40 @@
+import Vue from 'vue'
+
 // initial state
 // shape: [{ id, quantity }]
-const state = {}
+const state = {
+  navs: []
+}
 
 // getters
 const getters = {
-  rpc: state => state.rpc
+  navs: state => state.navs
 }
 
 // actions
-const actions = {}
+const actions = {
+  fetchNavs: function ({commit, state}) {
+    return new Promise((resolve, reject) => {
+      // 加载导航信息
+      const navURL = '/static/nav/cn.json'
+      Vue.http.get(navURL)
+        .then(response => response.json())
+        .then((data) => {
+          commit('setNavRes', {data})
+          resolve()
+        })
+        .catch(function (err) {
+          var msg = err.status + ':' + err.statusText
+          reject(msg)
+        })
+    })
+  }
+}
 
 // mutations
 const mutations = {
-  setRPC (state, rpc) {
-    state.rpc = rpc
+  setNavRes (state, {data}) {
+    state.navs = data
   }
 }
 

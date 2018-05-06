@@ -23,11 +23,15 @@
         <span class="hidden-sm-and-down" @click="go('/')">区块链导航&nbsp<small class="text">磨链区块链技术社区</small></span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-             <v-btn icon v-for="(nav,i) in toobars" :key="i"  :to="nav.href" >
-     <v-icon>{{nav.icon}}</v-icon>
-   </v-btn>
+      <v-btn icon v-for="(nav,i) in toobars" :key="i"  :to="nav.href" >
+          <v-icon>{{nav.icon}}</v-icon>
+      </v-btn>
     </v-toolbar>
     <v-content>
+      <v-progress-linear :indeterminate="true" :hidden="initSuccessfully"></v-progress-linear>
+      <v-alert :value="error" color="error">
+        {{error}}
+      </v-alert>
       <v-container fluid fill-height>
          <!-- <router-view></router-view> -->
          <home/>
@@ -76,13 +80,13 @@
 </template>
 
 <script>
-import navs from '@/assets/res.json'
 import home from '@/views/home'
 
 export default {
   name: 'App',
   data: () => ({
     drawer: null,
+    initSuccessfully: false,
     links: [
       {icon: 'fab fa-weibo', href: 'https://weibo.com/2095082503/'},
       {icon: 'fab fa-weixin', img: require('./assets/weixin.png')},
@@ -91,40 +95,23 @@ export default {
       {icon: 'fab fa-wordpress-simple', href: 'http://mochain.info'},
       {icon: 'fab fa-github', href: 'https://github.com/mochain'}
     ],
-    navs: navs,
-    items: [
-      { icon: 'fa-graduation-cap', text: '区块链教程', href: '' },
-      { icon: 'fa-user-secret', text: '培训机构', href: '' },
-      { icon: 'fa-bitcoin', text: '各类币', href: '' },
-      { icon: 'fa-comments', text: '社区', href: '' },
-      { icon: 'lightbulb_outline', text: '自媒体', href: '' },
-      { icon: 'fa-user-secret', text: '知名大V', href: '' },
-      { icon: 'fa-blogger', text: '知名博客', href: '' },
-      { icon: 'lightbulb_outline', text: '资讯媒体', href: '' },
-      { icon: 'lightbulb_outline', text: '须知', href: '' },
-      { icon: 'lightbulb_outline', text: '须知', href: '' },
-      { icon: 'lightbulb_outline', text: '须知', href: '' },
-      { icon: 'lightbulb_outline', text: '须知', href: '' },
-      { icon: 'lightbulb_outline', text: '须知', href: '' },
-      {
-        divider: true,
-        href: ''
-      },
-      {
-        icon: 'chat_bubble',
-        text: '交流',
-        href: 'https://gitter.im/mochain/etheraction'
-      },
-      {
-        icon: 'help',
-        text: '帮助',
-        href: 'https://gitter.im/mochain/etheraction'
-      }
-    ],
     toobars: [
 
-    ]
+    ],
+    error: null
   }),
+  computed: {
+    navs () {
+      return this.$store.state.setting.navs
+    }
+  },
+  created: function () {
+    this.$store.dispatch('fetchNavs')
+      .then(() => { this.initSuccessfully = true })
+      .catch((reason) => {
+        this.error = reason
+      })
+  },
   methods: {
     go: function (item, index) {
       if (item.url === undefined || item.url === '') {
