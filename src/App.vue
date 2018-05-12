@@ -60,7 +60,7 @@
         &copy;2018 — <strong>磨链 — 区块链技术社区</strong>
       </v-card-text>
     </v-card>
-      <v-speed-dial bottom right direction="top" fixed open-on-hover transition="slide-y-transition">
+    <!-- <v-speed-dial bottom right direction="top" fixed open-on-hover transition="slide-y-transition">
         <v-btn slot="activator" color="blue darken-2" dark fab hover>
         <v-icon>account_circle</v-icon>
         <v-icon>close</v-icon>
@@ -74,7 +74,7 @@
       <v-btn fab dark  small color="red" >
         <v-icon>delete</v-icon>
       </v-btn>
-    </v-speed-dial>
+    </v-speed-dial> -->
    </v-footer>
   </v-app>
 </template>
