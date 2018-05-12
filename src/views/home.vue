@@ -10,7 +10,6 @@
 </template>
 
 <script>
-// import navs from '@/assets/res.json'
 import card from '@/components/card'
 export default {
   // data: () => ({
@@ -22,9 +21,6 @@ export default {
   },
   components: {
     card
-  },
-  methods: {
-
   }
 }
 </script>
