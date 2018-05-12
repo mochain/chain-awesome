@@ -14,7 +14,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0", 
+    "babel-polyfill": "^6.26.0",
+    "npm": "^6.0.1",
     "vue": "^2.5.2",
     "vue-bus": "^1.1.0",
     "vue-resource": "^1.5.0",
