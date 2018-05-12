@@ -37,7 +37,7 @@
          <home/>
       </v-container>
     </v-content>
-    <v-footer inset height="auto" app >
+    <v-footer inset height="auto" absolute app >
     <v-card flat tile class="transparent grey--text text-xs-center"
     >
       <v-card-text>
@@ -138,7 +138,4 @@ export default {
 </script>
 
 <style>
-.footer--fixed {
-    position: absolute;
-}
 </style>
