@@ -6,7 +6,7 @@
             <span class="subheading grey--text" > {{item.title}}</span>
           </v-toolbar-title>
         </v-toolbar>
-        <v-container fluid  style="min-height: 0;" grid-list-md>
+        <v-container fluid  grid-list-md  style="min-height: 0;">
           <v-layout row wrap>
             <template  v-for="(one,index) in item.subs">
             <v-flex d-flex xs12 sm6 md4 v-if="!one.subs" :key="'sub_'+index">
@@ -68,7 +68,4 @@ export default {
 </script>
 
 <style>
-.container{
-  padding: 0;
-}
 </style>

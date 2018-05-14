@@ -32,7 +32,7 @@
       <v-alert :value="error" color="error">
         {{error}}
       </v-alert>
-      <v-container fluid fill-height>
+      <v-container fluid fill-height class="pa-0">
          <!-- <router-view></router-view> -->
          <home/>
       </v-container>
