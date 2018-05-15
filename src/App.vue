@@ -131,7 +131,7 @@ export default {
         if (document.querySelector(id) === null) {
           return
         }
-        this.$vuetify.goTo(id, {offset: -20})
+        this.$vuetify.goTo(id, {offset: -32})
       } else {
         // if (item.url.startsWith('/')) {
         //   this.$router.push({path: path})
