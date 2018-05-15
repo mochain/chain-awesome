@@ -32,7 +32,7 @@
       <v-alert :value="error" color="error">
         {{error}}
       </v-alert>
-      <v-container fluid fill-height class="pa-0">
+      <v-container fluid fill-height :class="contentClass">
          <!-- <router-view></router-view> -->
          <home/>
       </v-container>
@@ -106,6 +106,9 @@ export default {
     },
     isFullScreen () { // 全屏
       return this.$vuetify.breakpoint.lgAndUp
+    },
+    contentClass () {
+      return this.isFullScreen ? '' : 'pa-0'
     }
   },
   created: function () {
