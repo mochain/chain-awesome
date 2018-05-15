@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer fixed :clipped="$vuetify.breakpoint.lgAndUp"  app v-model="drawer"  width="200">
+    <v-navigation-drawer fixed :clipped="$vuetify.breakpoint.lgAndUp"  app v-model="drawer" value="true"  width="200">
       <v-list dense>
         <template v-for="(item, i) in navs">
             <v-divider  dark v-if="item.divider"  class="my-3"  :key="i" ></v-divider>
@@ -103,6 +103,9 @@ export default {
   computed: {
     navs () {
       return this.$store.state.setting.navs
+    },
+    isFullScreen () { // 全屏
+      return this.$vuetify.breakpoint.lgAndUp
     }
   },
   created: function () {
@@ -114,6 +117,10 @@ export default {
   },
   methods: {
     go: function (item, index) {
+      if (!this.isFullScreen) {
+        this.drawer = false
+      }
+
       if (item.url === undefined || item.url === '') {
         // 说明是内部链接，将自动调整到对应的标签
         var id = '#nav_' + index
