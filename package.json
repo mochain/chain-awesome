@@ -1,9 +1,23 @@
 {
-  "name": "chainnav",
+  "name": "chain-awesome",
   "version": "1.0.0",
-  "description": "Chain Resource navigation",
-  "author": "ysqi <devysq@gmail.com>",
-  "private": true,
+  "description": "Chain Resource Navigation",
+  "homepage": "https://hao.mochain.info",
+  "author": {
+    "name": "ysqi",
+    "email": "devysq@gmail.com",
+    "url": "https://yushuangqi.com"
+  },
+  "private": false,
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/mochain/chain-awesome/issues",
+    "email": "devysq@gmail.com"
+  }, 
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mochain/chain-awesome.git"
+  },
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
