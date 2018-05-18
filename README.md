@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mochain/chain-awesome.svg?branch=master)](https://travis-ci.org/mochain/chain-awesome)
+
 # chain-awesome
 
 一个区块链资源导航网站：https://hao.mochain.info
