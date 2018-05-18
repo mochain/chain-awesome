@@ -1,11 +1,15 @@
 dist: trusty
 language: node_js
+node_js:
+  - "9"
 
+# 确保 npm 版本为6.0以上
+before_install: if [[ `npm -v` != 6* ]]; then npm i -g npm@6; fi
+# 安装依赖包
 install:
     - npm install
-
 script:
-    - npm run build    
+    - npm run build
 
 cache:
   directories:
